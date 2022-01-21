@@ -65,11 +65,4 @@ void pasty:: Select_role(){
         system("CLS");
         Select_role();
     }
-    //edit
 }
-
-<<<<<<< HEAD
-void araikodai;
-=======
-etesttestesteste
->>>>>>> b4695c7a313572fa8e28dc546c2cc108bbf8552a
