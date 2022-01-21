@@ -67,3 +67,5 @@ void pasty:: Select_role(){
     }
     //edit
 }
+
+void araikodai;
