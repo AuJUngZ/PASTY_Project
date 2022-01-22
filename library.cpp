@@ -7,36 +7,6 @@
 #include <sstream>
 using namespace std;
 
-<<<<<<< HEAD
-class pasty{
-    public:
-        string BookName, Auther, Id;
-        int Quatity;
-
-    pasty()
-       {
-           BookName = "NO Book Name";
-           Auther = "No Author Name";
-           Id = "No Book ID";
-           Quatity = 0;
-       }
-          void Select_role();
-          void MainMenu_Student();
-          void MainMenu_Admin();
-          void SearchBook(int );
-          void IssueBook();
-          void ReturnBook();
-          void PassWord();
-          void AddBook();
-          void Show_Detail(int );
-          void DeleteBook();
-
-};
-
-
-int main(){
-    
-=======
 string BookName, Auther, Id;
 int Quatity;
 void Select_role();
@@ -53,7 +23,6 @@ void DeleteBook();
 ///////////////////////////
 int main(){
     Select_role();
->>>>>>> 27776b1c7a9c9350029a0cc0150f378f7431ea91
 }
 //////////////////////////
 void Select_role(){
@@ -81,92 +50,6 @@ void Select_role(){
         Select_role();
     }
 }
-<<<<<<< HEAD
-void pasty:: PassWord(){
-     
-}
-void pasty:: SearchBook(int N){
-    int choice,b,count=0;
-    char book[100];
-    system("cls");
-    ifstream search("Booksdata.txt");
-    if(!search)
-        {
-            cout<<"\n\t\tNo Books\n";
-            cout<<"\n\t\t->Press any key to continue.....";
-            getch();
-            system("cls");
-            if(N==1)
-            MainMenu_Student();
-            else
-            MainMenu_Admin();
-        }
-    system("cls");
-    cout<<"\n\t\tPlease Choose one option :-\n";
-    cout<<"\n\t\t1.Search By Name\n\n\t\t2.Search By Book's ID\n";
-    cout<<"\n\t\tEnter Your Choice : ";
-    cin >> choice;
-    if (choice == 1)
-    {   
-        cout<<"\n\t\tEnter Book's ID : ";
-        cin.getline(book,100);
-        system("cls");
-        while (!search.eof())
-        {
-          if(BookName[i]=='\0'&&Auther[i]=='\0')
-                {
-                        cout<<"\n\t\tBook Found :-\n";
-                        Show_Detail(N);
-                        
-                }
-        }     
-    }
-     else if(choice==2)
-          {
-          cout<<"\n\t\tEnter Book's ID : ";
-          cin.getline(book,100);
-          system("cls");
-          while(!search.eof())
-          {
-              
-              if(sc[i]=='\0'&&ch[i]=='\0')
-                {
-                            cout<<"\n\t\tBook Found :-\n";
-                            Show_Detail(N);
-                            
-                            break;
-                }
-              
-            }
-          }
-            else 
-          {
-             cout<<"\n\t\tPlease enter correct option :(";
-             getch();
-             system("cls");
-             SearchBook(N);
-          }
-          search.close();
-    }
-    cout<<"\n\t\tPress any key to continue.....";
-    getch();
-    system("cls");
-        if(N==1)
-            MainMenu_Student();
-        else
-            MainMenu_Admin();
-}
-void Show_Detail(int x){
-    cout<<"\n\t\tBook Name : "<<BookName<<endl;
-    cout<<"\n\t\tBook's Author Name : "<<Auther<<endl;
-    cout<<"\n\t\tBook's Quantity : "<<Quantity<<endl;
-    
-    if(x==2)
-    {   
-     cout<<"\n\t\tBook's ID : "<<Id<<endl;
-    }
-}
-=======
 
 void MainMenu_Admin(){
     system("cls");
@@ -288,10 +171,7 @@ void show(){
     }
 }
 
-error is_trivially_destructible
-
 void MainMenu_Student(){}
 void DeleteBook(){}
 void IssueBook(){}
 void SearchBook(){}
->>>>>>> 27776b1c7a9c9350029a0cc0150f378f7431ea91
