@@ -171,6 +171,8 @@ void show(){
     }
 }
 
+error is_trivially_destructible
+
 void MainMenu_Student(){}
 void DeleteBook(){}
 void IssueBook(){}
