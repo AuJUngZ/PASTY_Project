@@ -20,18 +20,19 @@ class pasty{
           void Select_role();
           void MainMenu_Student();
           void MainMenu_Admin();
-          void SearchBook();
+          void SearchBook(int );
           void IssueBook();
           void ReturnBook();
           void PassWord();
           void AddBook();
+          void Show_Detail(int );
           void DeleteBook();
 
 };
 
 
 int main(){
-
+    
 }
 
     /*วิธีสร้าง Function*/
@@ -53,10 +54,10 @@ void pasty:: Select_role(){
     
     if(Choice == 1){
         system("cls");
-        MainMenu_Student()
+        MainMenu_Student();
     }else if(Choice == 2){
         system("cls");
-        MainMenu_Admin()
+        MainMenu_Admin();
     }else if(Choice == 3){
         exit(0);
     }else{
@@ -66,48 +67,87 @@ void pasty:: Select_role(){
         Select_role();
     }
 }
-
-void pasty:: MainMenu_Admin(){
-    int Choice;
-    cout<<"Admin Menu\n";
-    cout<<"1.Organize Collection\n2.Edit Circulation Status\n3.Search from Catolog\n4.Back to Login page\n";
-    cout<<"Enter your choice : ";
-    cin >> Choice;
-    
-    if(Choice == 1){
+void pasty:: PassWord(){
+     
+}
+void pasty:: SearchBook(int N){
+    int choice,b,count=0;
+    char book[100];
+    system("cls");
+    ifstream search("Booksdata.txt");
+    if(!search)
+        {
+            cout<<"\n\t\tNo Books\n";
+            cout<<"\n\t\t->Press any key to continue.....";
+            getch();
+            system("cls");
+            if(N==1)
+            MainMenu_Student();
+            else
+            MainMenu_Admin();
+        }
+    system("cls");
+    cout<<"\n\t\tPlease Choose one option :-\n";
+    cout<<"\n\t\t1.Search By Name\n\n\t\t2.Search By Book's ID\n";
+    cout<<"\n\t\tEnter Your Choice : ";
+    cin >> choice;
+    if (choice == 1)
+    {   
+        cout<<"\n\t\tEnter Book's ID : ";
+        cin.getline(book,100);
         system("cls");
-        int ognChoice;
-        bool checkc = true;
-        do{
-            cout<<"Organize Collection\n";
-            cout<<"1.Add to Collection\n2.Delete from Collection\n3.Back to Admin Main Menu\n";
-            cout<<"Enter your choice : ";
-            cin >> ognChoice;
-       
-            if(Choice == 1) AddBook();
-            else if(Choice == 2) DeleteBook();
-            else if(Choice == 3) MainMenu_Admin();
-            else {
-                cout<<"Please enter correct option :(";
-                getch();
-                system("CLS");
-                checkc = false;
+        while (!search.eof())
+        {
+          if(BookName[i]=='\0'&&Auther[i]=='\0')
+                {
+                        cout<<"\n\t\tBook Found :-\n";
+                        Show_Detail(N);
+                        
+                }
+        }     
+    }
+     else if(choice==2)
+          {
+          cout<<"\n\t\tEnter Book's ID : ";
+          cin.getline(book,100);
+          system("cls");
+          while(!search.eof())
+          {
+              
+              if(sc[i]=='\0'&&ch[i]=='\0')
+                {
+                            cout<<"\n\t\tBook Found :-\n";
+                            Show_Detail(N);
+                            
+                            break;
+                }
+              
             }
-        }while (checkc = false);
-        
-    }else if(Choice == 2){
-        system("cls");
-        IssueBook();
-    }else if(Choice == 3){
-        system("cls");
-        SearchBook();
-    }else if(Choice == 4){
-        system("cls");
-        Select_role();
-    }else{
-        cout<<"Please enter correct option :(";
-        getch();
-        system("CLS");
-        MainMenu_Admin();
+          }
+            else 
+          {
+             cout<<"\n\t\tPlease enter correct option :(";
+             getch();
+             system("cls");
+             SearchBook(N);
+          }
+          search.close();
+    }
+    cout<<"\n\t\tPress any key to continue.....";
+    getch();
+    system("cls");
+        if(N==1)
+            MainMenu_Student();
+        else
+            MainMenu_Admin();
+}
+void Show_Detail(int x){
+    cout<<"\n\t\tBook Name : "<<BookName<<endl;
+    cout<<"\n\t\tBook's Author Name : "<<Auther<<endl;
+    cout<<"\n\t\tBook's Quantity : "<<Quantity<<endl;
+    
+    if(x==2)
+    {   
+     cout<<"\n\t\tBook's ID : "<<Id<<endl;
     }
 }
