@@ -51,13 +51,13 @@ void Select_role(){
     }
 }
 
-void Mainmenu_student()
+void MainMenu_Student()
 {
     system("cls");
     int Choice;
     cout<<"\t*************************** Student Menu *****************************\n";
-    cout<<"\t\t1.Serch Book\n\t\t2.Issue Books\n\t\t3.Return Book\n\t\t4.Back to Menu\n";
-    cout<<"\t********************************************************************\n";
+    cout<<"\n\t\t1.Search Book\n\n\t\t2.Issue Books\n\n\t\t3.Return Book\n\n\t\t4.Back to Menu\n";
+    cout<<"\n\t********************************************************************\n";
     cout<<"\t\tEnter your choice : ";
     cin >> Choice;
     
@@ -77,7 +77,7 @@ void Mainmenu_student()
         cout<<"Please enter correct option :(";
         getch();
         system("CLS");
-        Mainmenu_student();
+        MainMenu_Student();
     }
 }
 
@@ -85,9 +85,9 @@ void Mainmenu_student()
 void MainMenu_Admin(){
     system("cls");
     int Choice;
-    cout<<"\t*************************** Admin Menu *****************************\n";
-    cout<<"\t\t1.Add & Delete Book\n\t\t2.Issue Book\n\t\t3.Search book\n\t\t4.Back to Menu\n";
-    cout<<"\t********************************************************************\n";
+    cout<<"\t*************************** Admin Menu *******************************\n";
+    cout<<"\n\t\t1.Add & Delete Book\n\n\t\t2.Issue Book\n\n\t\t3.Search book\n\n\t\t4.Back to Menu\n";
+    cout<<"\n\t**********************************************************************\n";
     cout<<"\t\tEnter your choice : ";
     cin >> Choice;
     
@@ -97,8 +97,8 @@ void MainMenu_Admin(){
         bool checkc = true;
         do{
             cout <<"\t*************************** Add & Delete*****************************\n";
-            cout<<"\t\t1.Add to Collection\n\t\t2.Delete from Collection\n\t\t3.Back to Admin Main Menu\n";
-            cout <<"\t*********************************************************************\n";
+            cout<<"\n\t\t1.Add to Collection\n\n\t\t2.Delete from Collection\n\n\t\t3.Back to Admin Main Menu\n";
+            cout <<"\n\t*********************************************************************\n";
             cout<<"\t\tEnter your choice : ";
             cin >> ognChoice;
        
@@ -184,25 +184,139 @@ vector<string> delcomma(string line){
 		return result;
 }
 
+
 void show(){
     fstream myfile;
     myfile.open("BookList.txt");
     string textline;
     vector<string> BookInfo;
     while(getline(myfile,textline)){
-        BookInfo = delcomma(textline);
-        cout << "***************************************************************" << endl;
+        cout << "*******************************************************************************" << endl;
         cout << "\n";
         cout << "Book Id : " << BookInfo.at(0) << "\t";
         cout << "Book Name : " << BookInfo.at(1) << "\t";
         cout << "Author : " << BookInfo.at(2) << "\t";
         cout << "Quatity : " << BookInfo.at(3) << "\t" << endl;
         cout << "\n";
-        cout << "***************************************************************" << endl;
+        cout << "*******************************************************************************" << endl;
     }
 }
 
-void MainMenu_Student(){}
+void SearchFormBookId(){
+    int choice;
+    fstream myfile;
+    myfile.open("BookList.txt");
+    system("cls");
+    string BookId;   
+    cout << "Enter BookId : ";
+    cin >> BookId;
+    if(myfile.is_open()){
+        string text;
+        vector<string> BookInFo;
+        while (getline(myfile,text))
+        {
+            BookInFo = delcomma(text);
+            if(BookId==BookInFo.at(0)){
+                cout << "***********************************************************************************" << endl;
+                cout << "\n";
+                cout << "Book Id : " << BookInFo.at(0) << "\t";
+                cout << "Book Name : " << BookInFo.at(1) << "\t";
+                cout << "Author : " << BookInFo.at(2) << "\t";
+                cout << "Quatity : " << BookInFo.at(3) << "\t" << endl;
+                cout << "\n";
+                cout << "***********************************************************************************" << endl;
+            }else{
+                cout << "No Books.\n";
+                cout << "Press Enter to back to menu.\n";
+                getch();
+                system("cls");
+                SearchBook();
+            }
+            
+        }
+        cout << "1.Search again\n";
+        cout << "Press any key to back to menu.";
+        cout << "\nEnter your choice : ";
+        cin >> choice;
+        if(choice == 1) SearchBook();
+        else MainMenu_Student();
+        
+    }else{
+        cout << "File not found.\n";
+        cout << "Press Enter to back to menu.\n";
+        getch();
+        SearchBook();
+    }myfile.close();
+}
+
+void SearchFormBookName(){
+    int choice;
+    fstream myfile;
+    myfile.open("BookList.txt");
+    system("cls");
+    string BookName;
+    cout << "Enter Book Name : ";
+    cin >> BookName;
+    if(myfile.is_open()){
+        string textline;
+        vector<string> BookInFo;
+        while(getline(myfile,textline)){
+            BookInFo = delcomma(textline);
+            if(BookName == BookInFo.at(1)){
+                cout << "***********************************************************************************" << endl;
+                cout << "\n";
+                cout << "Book Id : " << BookInFo.at(0) << "\t";
+                cout << "Book Name : " << BookInFo.at(1) << "\t";
+                cout << "Author : " << BookInFo.at(2) << "\t";
+                cout << "Quatity : " << BookInFo.at(3) << "\t" << endl;
+                cout << "\n";
+                cout << "***********************************************************************************" << endl;
+            }else{
+                cout << "No Books.\n";
+                cout << "Press Enter to back to menu.\n";
+                getch();
+                system("cls");
+                SearchBook();
+            }
+            
+        }
+        cout << "1.Search again\n";
+        cout << "Press any key to back to menu.";
+        cout << "\nEnter your choice : ";
+        cin >> choice;
+        if(choice == 1) SearchBook();
+        else MainMenu_Student();
+    }else{
+        cout << "File not found.\n";
+        cout << "Press Enter to back to menu.\n";
+        getch();
+        SearchBook();
+    }
+    myfile.close();
+}
+
+void SearchBook(){
+    fstream myfile("BookList.txt");
+    int choice;
+    cout<<"\t*************************** Search Menu *******************************\n";
+    cout << "\n\t\t1.Search from Books ID \n\n\t\t2.Search from BookName\n\n\t\t";
+    cout<<"\n\t***********************************************************************\n";
+    cout << "\t\tEnter choice : ";
+    cin >> choice;
+    
+        if(choice == 1){
+            SearchFormBookId();
+        } else if(choice == 2) {
+            SearchFormBookName();
+        } else {
+            cout<<"Please enter correct option :(";
+                getch();
+                system("CLS");
+                SearchBook();
+        }
+}
+
+void ReturnBook(){}
 void DeleteBook(){}
 void IssueBook(){}
-void SearchBook(){}
+
