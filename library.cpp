@@ -51,6 +51,37 @@ void Select_role(){
     }
 }
 
+void Mainmenu_student()
+{
+    system("cls");
+    int Choice;
+    cout<<"\t*************************** Student Menu *****************************\n";
+    cout<<"\t\t1.Serch Book\n\t\t2.Issue Books\n\t\t3.Return Book\n\t\t4.Back to Menu\n";
+    cout<<"\t********************************************************************\n";
+    cout<<"\t\tEnter your choice : ";
+    cin >> Choice;
+    
+    if(Choice == 1){
+        system("cls");
+        SearchBook();
+    }else if(Choice == 2){
+        system("cls");
+        IssueBook();
+    }else if(Choice == 3){
+        system("cls");
+        ReturnBook();
+    }else if(Choice == 4){
+        system("cls");
+        Select_role();
+    }else{
+        cout<<"Please enter correct option :(";
+        getch();
+        system("CLS");
+        Mainmenu_student();
+    }
+}
+
+
 void MainMenu_Admin(){
     system("cls");
     int Choice;
