@@ -20,11 +20,13 @@ void IssueBook();
 void ReturnBook();
 void PassWord();
 void DeleteBook();
+
 ///////////////////////////
 int main(){
     Select_role();
 }
 //////////////////////////
+
 void Select_role(){
     system("cls");
     int Choice;
@@ -317,6 +319,42 @@ void SearchBook(){
 }
 //Search
 void ReturnBook(){}
-void DeleteBook(){}
+void DeleteBook(){
+    system("cls");
+    int choice;
+    string Id;
+    string textline;
+    fstream myfile;
+    fstream newfile;
+    vector<string> info;
+    newfile.open("newBookList.txt");
+    myfile.open("BookList.txt");
+    cout << " Please Enter book Id you want to Delete : ";
+    cin >> Id;
+    if(myfile.is_open()){
+        if(getline(myfile,textline)){
+            while(getline(myfile,textline))
+            {
+                info = delcomma(textline);
+                if( Id != info.at(0)){
+                newfile << textline;
+                }
+            }
+            while(getline(newfile,textline)){
+                myfile << textline << endl;
+            }
+            cout << "1.Delete more book \n Press any key to back to menu.";
+            cout << "Enter choice : ";
+            cin >> choice;
+            if(choice == 1) DeleteBook();
+            else MainMenu_Admin();
+        }else{
+            cout << "not thing\n";
+            cout << "Press Enter to back to menu.";
+            getch();
+            MainMenu_Admin();
+        }
+    }
+}
 void IssueBook(){}
 
