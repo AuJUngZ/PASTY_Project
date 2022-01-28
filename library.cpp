@@ -7,9 +7,11 @@
 #include <sstream>
 using namespace std;
 
+
 string BookName, Auther, Id;
 int Quatity;
 string toUpperStr(string );
+string printBuildDateTime();
 void Select_role();
 void MainMenu_Student();
 void MainMenu_Admin();
@@ -27,6 +29,11 @@ int main(){
     Select_role();
 }
 //////////////////////////
+
+string printBuildDateTime () {
+    string x = __TIMESTAMP__;
+    return x;
+}
 
 void Select_role(){
     system("cls");
@@ -270,7 +277,7 @@ void SearchFormBookName(){
     system("cls");
     string BookName;
     cout << "Enter Book Name : ";
-    cin >> BookName;
+    getline(cin,BookName) ;
     BookName = toUpperStr(BookName);
     if(myfile.is_open()){
         string textline;
@@ -353,7 +360,7 @@ void DeleteBook(){
     }
     else if (choice == 2) {
         cout << "Please Enter the name of record you want to delete: ";
-        cin >> key;
+        getline(cin,key);
     }
     if(myfile.is_open()){
         int t;
@@ -399,8 +406,67 @@ void DeleteBook(){
             if(choice == 1) DeleteBook();
             else MainMenu_Admin();
         }
-    } 
-    
+    }
 }
-void IssueBook(){}
+void IssueBook(){
+    ifstream myfile("BookList.txt");
+    ofstream newfile("NewBookList.txt");
+    ofstream issuefile("IssueList.txt",ios::app);
+    string key, name, con;
+    int choice,t;
+    system("cls");
+    cout << "1.Issue From Id\n2.Issue Form Name\nEnter your choice : ";
+    
+    cin >> choice;
+    if(choice == 1){
+        cout << "Please Enter the Id of record you want to issue: ";  
+        cin >> key;
+        cout << "Please Enter your name : ";
+        cin.ignore();
+        getline(cin,name);
+        t = 0;
+    }
+    else if (choice == 2) {
+        cout << "Please Enter the name of record you want to issue: ";
+        getline(cin,key);
+        cout << "Please Enter your name : ";
+        cin.ignore();
+        getline(cin,name);
+        t = 1;
+    }
+    if(myfile.is_open()){
+        string z;
+        vector<string> v;
+
+        while(getline(myfile,z)){
+            v = delcomma(z);
+            if(toUpperStr(key) == toUpperStr(v.at(t))){
+                newfile << v.at(0) << "," << v.at(1) << "," << v.at(2) << "," << stoi(v.at(3))-1 << endl;
+                issuefile << name << "," << v.at(0) << "," << v.at(1) << "," << printBuildDateTime() <<endl;
+            }else{
+                newfile << v.at(0) << "," << v.at(1) << "," << v.at(2) << "," << v.at(3) << endl;
+            }
+        }
+        myfile.close();
+        newfile.close();
+        issuefile.close();
+        remove("BookList.txt");
+        rename("NewBookList.txt", "BookList.txt");
+        system("cls");
+        cout << "successfully issue... have fun :D\n" << endl;
+        cout << "Will you continue to issue?(Yes : y || No : n) : ";
+        cin  >> con;
+        do{
+            if( con == "y"){
+                IssueBook();
+            }
+            else if (con == "n"){
+                Select_role();
+            }
+            else{
+                cout << "Invalid command";
+            }
+        } while(true);
+    }
+}
 
