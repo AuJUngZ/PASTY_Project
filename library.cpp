@@ -220,6 +220,7 @@ void show(){
         cout << "\n";
         cout << "*******************************************************************************" << endl;
     }
+    myfile.close();
 }
 
 void SearchFormBookId(){
@@ -250,6 +251,7 @@ void SearchFormBookId(){
                 check = true;
             }
         }
+        myfile.close();
         if(check == false){
             cout << "No Books.\n";
             cout << "Press Enter to back to menu.\n";
@@ -302,8 +304,9 @@ void SearchFormBookName(){
                 cout << "***********************************************************************************" << endl;
                 check = true;
              }
-            }
-            if(check == false){
+        }
+        myfile.close();
+        if(check == false){
             cout << "No Books.\n";
             cout << "Press Enter to back to menu.\n";
             getch();
@@ -328,7 +331,6 @@ void SearchFormBookName(){
 }
 
 void SearchBook(){
-    fstream myfile("BookList.txt");
     int choice;
     cout<<"\t\t\t\t       (\\_/)\n\t\t\t\t       (o.o)\n\t\t\t\t       />\"<\\\n\t\t\t\t       \\___/\n\n";
     cout<<"\t*************************** Search Menu *******************************\n";
@@ -343,9 +345,9 @@ void SearchBook(){
             SearchFormBookName();
         } else {
             cout<<"Please enter correct option :(";
-                getch();
-                system("CLS");
-                SearchBook();
+            getch();
+            system("CLS");
+            SearchBook();
         }
 }
 //Search
@@ -353,7 +355,7 @@ void SearchBook(){
 void ReturnBook(){
     ifstream myfile("BookList.txt");
     ofstream newfile("NewBookList.txt");
-    ofstream issuefile("IssueList.txt",ios::app);
+    ofstream ReturnList("ReturnList.txt",ios::app);
     string key, name, con;
     int choice,t;
     system("cls");
@@ -368,7 +370,6 @@ void ReturnBook(){
         cout << "Please Enter the Id of record you want to return: ";  
         cin >> key;
         cout << "Please Enter your name : ";
-        cin.ignore();
         getline(cin,name);
         t = 0;
     }
@@ -390,14 +391,14 @@ void ReturnBook(){
             v = delcomma(z);
             if(toUpperStr(key) == toUpperStr(v.at(t))){
                 newfile << v.at(0) << "," << v.at(1) << "," << v.at(2) << "," << stoi(v.at(3))+1 << endl;
-                issuefile << name << "," << v.at(0) << "," << v.at(1) << "," << printBuildDateTime() <<endl;
+                ReturnList << name << "," << v.at(0) << "," << v.at(1) << "," << printBuildDateTime() <<endl;
             }else{
                 newfile << v.at(0) << "," << v.at(1) << "," << v.at(2) << "," << v.at(3) << endl;
             }
         }
         myfile.close();
         newfile.close();
-        issuefile.close();
+        ReturnList.close();
         remove("BookList.txt");
         rename("NewBookList.txt", "BookList.txt");
         system("cls");
@@ -519,7 +520,6 @@ void IssueBook(){
         cin.ignore();
         getline(cin,key);
         cout << "Please Enter your name : ";
-        cin.ignore();
         getline(cin,name);
         t = 1;
     }
