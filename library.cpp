@@ -108,7 +108,7 @@ void MainMenu_Admin(){
     cout<<"\t\tEnter your choice : ";
     cin >> Choice;
     switch (Choice) {
-        case 1:
+        case 1: {
             system("cls");
             int ognChoice;
             bool checkc = true;
@@ -138,19 +138,19 @@ void MainMenu_Admin(){
                         system("CLS");
                         checkc = false;
                 }
-            }while (checkc == false);
+            }while (checkc == false);}
             break;
-        case 2:
+        case 2:{
             system("cls");
-            IssueBook();
+            IssueBook();}
             break;
-        case 3:
+        case 3:{
             system("cls");
-            SearchBook();
+            SearchBook();}
             break;
-        case 4:
+        case 4:{
             system("cls");
-            Select_role();
+            Select_role();}
             break;
         default:
             cout << "Invalid command";
@@ -576,4 +576,3 @@ void IssueBook(){
         } while(true);
     }
 }
-
