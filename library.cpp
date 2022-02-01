@@ -107,50 +107,56 @@ void MainMenu_Admin(){
     cout<<"\n\t**********************************************************************\n";
     cout<<"\t\tEnter your choice : ";
     cin >> Choice;
-    
-    if(Choice == 1){
-        system("cls");
-        int ognChoice;
-        bool checkc = true;
-        do{
-            cout<<"\t\t\t\t       (\\_/)\n\t\t\t\t       (o.o)\n\t\t\t\t       />\"<\\\n\t\t\t\t       \\___/\n\n";
-            cout <<"\t*************************** Add & Delete*****************************\n";
-            cout<<"\n\t\t1.Add to Collection\n\n\t\t2.Delete from Collection\n\n\t\t3.Back to Admin Main Menu\n";
-            cout <<"\n\t*********************************************************************\n";
-            cout<<"\t\tEnter your choice : ";
-            cin >> ognChoice;
-       
-            if(ognChoice == 1) AddBook();
-            else if(ognChoice == 2){
-                system("cls");
-                DeleteBook();
-            }
-            else if(ognChoice == 3){
-                system("cls");
-                MainMenu_Admin();
-            }
-            else {
-                cout<<"Please enter correct option :(";
-                getch();
-                system("CLS");
-                checkc = false;
-            }
-        }while (checkc == false);
-        
-    }else if(Choice == 2){
-        system("cls");
-        IssueBook();
-    }else if(Choice == 3){
-        system("cls");
-        SearchBook();
-    }else if(Choice == 4){
-        system("cls");
-        Select_role();
-    }else{
-        cout<<"Please enter correct option :(";
-        getch();
-        system("CLS");
-        MainMenu_Admin();
+    switch (Choice) {
+        case 1:
+            system("cls");
+            int ognChoice;
+            bool checkc = true;
+            do{
+                cout<<"\t\t\t\t       (\\_/)\n\t\t\t\t       (o.o)\n\t\t\t\t       />\"<\\\n\t\t\t\t       \\___/\n\n";
+                cout <<"\t*************************** Add & Delete*****************************\n";
+                cout<<"\n\t\t1.Add to Collection\n\n\t\t2.Delete from Collection\n\n\t\t3.Back to Admin Main Menu\n";
+                cout <<"\n\t*********************************************************************\n";
+                cout<<"\t\tEnter your choice : ";
+                cin >> ognChoice;
+                switch (ognChoice) {
+                    case 1:
+                        system("cls");
+                        AddBook();
+                        break;
+                    case 2:
+                        system("cls");
+                        DeleteBook();
+                        break;
+                    case 3:
+                        system("cls");
+                        MainMenu_Admin();
+                        break;
+                    default:
+                        cout<<"Please enter correct option :(";
+                        getch();
+                        system("CLS");
+                        checkc = false;
+                }
+            }while (checkc == false);
+            break;
+        case 2:
+            system("cls");
+            IssueBook();
+            break;
+        case 3:
+            system("cls");
+            SearchBook();
+            break;
+        case 4:
+            system("cls");
+            Select_role();
+            break;
+        default:
+            cout << "Invalid command";
+            getch();
+            system("CLS");
+            MainMenu_Admin();
     }
 }
 
@@ -353,9 +359,6 @@ void SearchBook(){
 //Search
 
 void ReturnBook(){
-    ifstream myfile("BookList.txt");
-    ofstream newfile("NewBookList.txt");
-    ofstream ReturnList("ReturnList.txt",ios::app);
     string key, name, con;
     int choice,t;
     system("cls");
@@ -365,24 +368,35 @@ void ReturnBook(){
     cout<<"\n\t***********************************************************************\n";
     cout<<"\t\tEnter your choice : ";
     cin >> choice;
-    if(choice == 1){
-        system("cls");
-        cout << "Please Enter the Id of record you want to return: ";  
-        cin >> key;
-        cout << "Please Enter your name : ";
-        getline(cin,name);
-        t = 0;
+    switch (choice) {
+        case 1:
+            system("cls");
+            cout << "Please Enter the Id of record you want to return: ";  
+            cin >> key;
+            cout << "Please Enter your name : ";
+            cin.ignore();
+            getline(cin,name);
+            t = 0;
+            break;
+        case 2:
+            system("cls");
+            cout << "Please Enter the name of record you want to return: ";
+            cin.ignore();
+            getline(cin,key);
+            cout << "Please Enter your name : ";
+            cin.ignore();
+            getline(cin,name);
+            t = 1;
+            break;
+        default:
+            cout << "Invalid command";
+            getch();
+            system("CLS");
+            ReturnBook();
     }
-    else if (choice == 2) {
-        system("cls");
-        cout << "Please Enter the name of record you want to return: ";
-        cin.ignore();
-        getline(cin,key);
-        cout << "Please Enter your name : ";
-        cin.ignore();
-        getline(cin,name);
-        t = 1;
-    }
+    ifstream myfile("BookList.txt");
+    ofstream newfile("NewBookList.txt");
+    ofstream ReturnList("ReturnList.txt",ios::app);
     if(myfile.is_open()){
         string z;
         vector<string> v;
@@ -403,17 +417,21 @@ void ReturnBook(){
         rename("NewBookList.txt", "BookList.txt");
         system("cls");
         cout << "successfully return :D\n" << endl;
-        cout << "Do you have another book to return?(Yes : y || No : n) : ";
-        cin  >> con;
         do{
+            cout << "Do you have another book to return?(Yes : y || No : n) : ";
+            cin  >> con;
             if( con == "y"){
                 ReturnBook();
+                break;
             }
             else if (con == "n"){
                 Select_role();
+                break;
             }
             else{
                 cout << "Invalid command";
+                getch();
+                system("cls");
             }
         } while(true);
     }
