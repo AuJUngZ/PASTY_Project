@@ -55,13 +55,13 @@ void Select_role(){
             system("cls");
             MainMenu_Admin();}
             break;
-        case 3:
+        case 4:
             system("cls");
             exit(0);
             break;
         default:
             cout<<"\n\t\tPlease enter correct option :(";
-            cin.get();
+            getch();
             system("CLS");
             Select_role();
     }
