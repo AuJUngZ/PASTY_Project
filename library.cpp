@@ -46,19 +46,24 @@ void Select_role(){
     cout<<"\n\t\tEnter your choice : ";
     cin >> Choice;
     
-    if(Choice == 1){
-        system("cls");
-        MainMenu_Student();
-    }else if(Choice == 2){
-        system("cls");
-        MainMenu_Admin();
-    }else if(Choice == 3){
-        exit(0);
-    }else{
-        cout<<"\n\t\tPlease enter correct option :(";
-        cin.get();
-        system("CLS");
-        Select_role();
+    switch (Choice) {
+        case 1:{
+            system("cls");
+            MainMenu_Student();}
+            break;
+        case 2:{
+            system("cls");
+            MainMenu_Admin();}
+            break;
+        case 3:
+            system("cls");
+            exit(0);
+            break;
+        default:
+            cout<<"\n\t\tPlease enter correct option :(";
+            cin.get();
+            system("CLS");
+            Select_role();
     }
 }
 
