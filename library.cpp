@@ -55,9 +55,9 @@ void Select_role(){
             system("cls");
             MainMenu_Admin();}
             break;
-        case 4:
+        case 3:{
             system("cls");
-            exit(0);
+            exit(0);}
             break;
         default:
             cout<<"\n\t\tPlease enter correct option :(";
