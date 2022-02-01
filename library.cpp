@@ -38,6 +38,7 @@ string printBuildDateTime () {
 void Select_role(){
     system("cls");
     int Choice;
+    cout<< "\n\t\t\t  A_____A\n\t\t\t ( O w O )\n\t\t\t/  v   v  \\\n" << "\t\t       *~ welcome ~*\n";
     cout<<"\n\t*********** PASTY MANAGEMENT SYSTEM ***********\n";
     cout<<"\n\t\t>>Please Choose Any Option To login \n";
     cout<<"\n\t\t1.Student\n\n\t\t2.Admin\n\n\t\t3.Close Application\n\n";
@@ -65,6 +66,7 @@ void MainMenu_Student()
 {
     system("cls");
     int Choice;
+    cout<<"\t\t\t\t     /)/)  (\\(\\\n\t\t\t\t   ( . .)  (. . )\n\t\t\t\t   (            )\n\n";
     cout<<"\t*************************** Student Menu *****************************\n";
     cout<<"\n\t\t1.Search Book\n\n\t\t2.Issue Books\n\n\t\t3.Return Book\n\n\t\t4.Back to Menu\n";
     cout<<"\n\t********************************************************************\n";
@@ -99,6 +101,7 @@ string toUpperStr(string x){
 void MainMenu_Admin(){
     system("cls");
     int Choice;
+    cout<<"\t\t\t\t     /)/)  (\\(\\\n\t\t\t\t   ( . .)  (. . )\n\t\t\t\t   (            )\n\n";
     cout<<"\t*************************** Admin Menu *******************************\n";
     cout<<"\n\t\t1.Add & Delete Book\n\n\t\t2.Issue Book\n\n\t\t3.Search book\n\n\t\t4.Back to Menu\n";
     cout<<"\n\t**********************************************************************\n";
@@ -110,6 +113,7 @@ void MainMenu_Admin(){
         int ognChoice;
         bool checkc = true;
         do{
+            cout<<"\t\t\t\t       (\\_/)\n\t\t\t\t       (o.o)\n\t\t\t\t       />\"<\\\n\t\t\t\t       \\___/\n\n";
             cout <<"\t*************************** Add & Delete*****************************\n";
             cout<<"\n\t\t1.Add to Collection\n\n\t\t2.Delete from Collection\n\n\t\t3.Back to Admin Main Menu\n";
             cout <<"\n\t*********************************************************************\n";
@@ -151,7 +155,9 @@ void MainMenu_Admin(){
 }
 
 void AddBook(){
-    cout << "************************ Adding Book ***************************" << endl;
+    system("cls");
+    cout << "\t\t\t                                .-.\n\t\t\t   (___________________________()6 `-,\n\t\t\t   (   ______________________   /''\"`\n\t\t\t   //\\\\                      //\\\\\n\t\t\t   \"\" \"\"                     \"\" \"\"\n\n";
+    cout << "\t************************ Adding Book ***************************" << endl;
     cout << "\n";
     int choice;
     string BookName, Author, Id;
@@ -159,22 +165,22 @@ void AddBook(){
     fstream myfile;
     myfile.open("BookList.txt", ios::app);
     if(myfile.is_open()){
-        cout << "Enter book ID : ";
+        cout << "\tEnter book ID : ";
         cin >> Id;
-        cout << "Enter book name : ";
+        cout << "\tEnter book name : ";
         cin >> BookName;
-        cout << "Enter Author : ";
+        cout << "\tEnter Author : ";
         cin >> Author;
-        cout << "Enter quatity of book : ";
+        cout << "\tEnter quatity of book : ";
         cin >> Quatity;
         myfile << Id << "," << BookName << "," << Author << "," << Quatity << endl;
         myfile.close();
         // {BookId,BookName,Author,Quatity} //
     }
     cout << "\n";
-    cout << "***************************************************************" << endl;
-    cout << "You want to add more book? : Press 1 --> Yes & Press anykey ->> Back to admin menu." << endl;
-    cout << "Enter your choice : ";
+    cout << "\t***************************************************************" << endl;
+    cout << "\tYou want to add more book? : Press 1 --> Yes & Press anykey ->> Back to admin menu." << endl;
+    cout << "\tEnter your choice : ";
     cin >> choice;
     if(choice == 1){
         system("cls");
@@ -222,7 +228,7 @@ void SearchFormBookId(){
     myfile.open("BookList.txt");
     bool check = false;
     system("cls");
-    string BookId;   
+    string BookId;
     cout << "Enter BookId : ";
     cin >> BookId;
     BookId = toUpperStr(BookId);
@@ -277,6 +283,7 @@ void SearchFormBookName(){
     system("cls");
     string BookName;
     cout << "Enter Book Name : ";
+    cin.ignore();
     getline(cin,BookName) ;
     BookName = toUpperStr(BookName);
     if(myfile.is_open()){
@@ -323,8 +330,9 @@ void SearchFormBookName(){
 void SearchBook(){
     fstream myfile("BookList.txt");
     int choice;
+    cout<<"\t\t\t\t       (\\_/)\n\t\t\t\t       (o.o)\n\t\t\t\t       />\"<\\\n\t\t\t\t       \\___/\n\n";
     cout<<"\t*************************** Search Menu *******************************\n";
-    cout << "\n\t\t1.Search from Books ID \n\n\t\t2.Search from BookName\n\n\t\t";
+    cout << "\n\t\t1.Search from Books ID \n\n\t\t2.Search from BookName\n";
     cout<<"\n\t***********************************************************************\n";
     cout << "\t\tEnter choice : ";
     cin >> choice;
@@ -341,7 +349,76 @@ void SearchBook(){
         }
 }
 //Search
-void ReturnBook(){}
+
+void ReturnBook(){
+    ifstream myfile("BookList.txt");
+    ofstream newfile("NewBookList.txt");
+    ofstream issuefile("IssueList.txt",ios::app);
+    string key, name, con;
+    int choice,t;
+    system("cls");
+    cout<<"\t\t\t\t       (\\_/)\n\t\t\t\t       (o.o)\n\t\t\t\t       />\"<\\\n\t\t\t\t       \\___/\n\n";
+    cout<<"\t*************************** Return Menu *******************************\n";
+    cout << "\n\t\t1.Return From Id\n\n\t\t2.Return Form Name\n";
+    cout<<"\n\t***********************************************************************\n";
+    cout<<"\t\tEnter your choice : ";
+    cin >> choice;
+    if(choice == 1){
+        system("cls");
+        cout << "Please Enter the Id of record you want to return: ";  
+        cin >> key;
+        cout << "Please Enter your name : ";
+        cin.ignore();
+        getline(cin,name);
+        t = 0;
+    }
+    else if (choice == 2) {
+        system("cls");
+        cout << "Please Enter the name of record you want to return: ";
+        cin.ignore();
+        getline(cin,key);
+        cout << "Please Enter your name : ";
+        cin.ignore();
+        getline(cin,name);
+        t = 1;
+    }
+    if(myfile.is_open()){
+        string z;
+        vector<string> v;
+
+        while(getline(myfile,z)){
+            v = delcomma(z);
+            if(toUpperStr(key) == toUpperStr(v.at(t))){
+                newfile << v.at(0) << "," << v.at(1) << "," << v.at(2) << "," << stoi(v.at(3))+1 << endl;
+                issuefile << name << "," << v.at(0) << "," << v.at(1) << "," << printBuildDateTime() <<endl;
+            }else{
+                newfile << v.at(0) << "," << v.at(1) << "," << v.at(2) << "," << v.at(3) << endl;
+            }
+        }
+        myfile.close();
+        newfile.close();
+        issuefile.close();
+        remove("BookList.txt");
+        rename("NewBookList.txt", "BookList.txt");
+        system("cls");
+        cout << "successfully return :D\n" << endl;
+        cout << "Do you have another book to return?(Yes : y || No : n) : ";
+        cin  >> con;
+        do{
+            if( con == "y"){
+                ReturnBook();
+            }
+            else if (con == "n"){
+                Select_role();
+            }
+            else{
+                cout << "Invalid command";
+            }
+        } while(true);
+    }
+}
+
+
 void DeleteBook(){
     bool check = false;
     int choice;
@@ -352,13 +429,19 @@ void DeleteBook(){
     ofstream newfile;
     newfile.open("newBookList.txt");
     vector<string> info;
-    cout << "1.Delete From Id\n2.Delete Form Name\nEnter your choice : ";
+    cout << "\t\t\t                                .-.\n\t\t\t   (___________________________()6 `-,\n\t\t\t   (   ______________________   /''\"`\n\t\t\t   //\\\\                      //\\\\\n\t\t\t   \"\" \"\"                     \"\" \"\"\n\n";
+    cout<<"\t*************************** Delete Book *****************************\n";
+    cout<<"\n\t\t1.Delete From Id\n\n\t\t2.Delete Form Name\n\n\t\t3.Return Book\n";
+    cout<<"\n\t********************************************************************\n";
+    cout<<"\t\tEnter your choice : ";
     cin >> choice;
     if(choice == 1){
+        system("cls");
         cout << "Please Enter the Id of record you want to delete: ";  
         cin >> key;
     }
     else if (choice == 2) {
+        system("cls");
         cout << "Please Enter the name of record you want to delete: ";
         getline(cin,key);
     }
@@ -386,7 +469,7 @@ void DeleteBook(){
             cout<<"\t***************************** Status *******************************\n";
             cout << "\n\tThe record with the name " << key << " has been deleted if it exsisted" << endl;
             cout<<"\n\n\t*************************** Delete Menu ****************************\n\n";
-            cout << "\t\t1.Delete more book \n\t\tPress any key to back to menu.";
+            cout << "\t\t1.Delete more book \n\t\tPress any other key to back to menu.";
             cout << "\n\t\tEnter choice : ";
             cin >> choice;
             if(choice == 1) DeleteBook();
@@ -400,7 +483,7 @@ void DeleteBook(){
             cout<<"\t***************************** Status *******************************\n\n";
             cout << "\t\tNo book match with  " << key << endl;
             cout<<"\n\t*************************** Delete Menu ****************************\n\n";
-            cout << "\t\t1.Delete more book \n\t\tPress any key to back to menu.";
+            cout << "\t\t1.Delete more book \n\t\tPress any other key to back to menu.";
             cout << "\n\t\tEnter choice : ";
             cin >> choice;
             if(choice == 1) DeleteBook();
@@ -415,10 +498,14 @@ void IssueBook(){
     string key, name, con;
     int choice,t;
     system("cls");
-    cout << "1.Issue From Id\n2.Issue Form Name\nEnter your choice : ";
-    
+    cout<<"\t\t\t\t       (\\_/)\n\t\t\t\t       (o.o)\n\t\t\t\t       />\"<\\\n\t\t\t\t       \\___/\n\n";
+    cout<<"\t*************************** Issue Menu *******************************\n";
+    cout << "\n\t\t1.Issue From Id\n\n\t\t2.Issue Form Name\n";
+    cout<<"\n\t***********************************************************************\n";
+    cout<<"\t\tEnter your choice : ";
     cin >> choice;
     if(choice == 1){
+        system("cls");
         cout << "Please Enter the Id of record you want to issue: ";  
         cin >> key;
         cout << "Please Enter your name : ";
@@ -427,7 +514,9 @@ void IssueBook(){
         t = 0;
     }
     else if (choice == 2) {
+        system("cls");
         cout << "Please Enter the name of record you want to issue: ";
+        cin.ignore();
         getline(cin,key);
         cout << "Please Enter your name : ";
         cin.ignore();
