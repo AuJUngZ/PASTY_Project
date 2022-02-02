@@ -70,7 +70,7 @@ void Select_role(){
 void MainMenu_Student()
 {
     system("cls");
-    int Choice;
+    char Choice[100];
     cout<<"\t\t\t\t     /)/)  (\\(\\\n\t\t\t\t   ( . .)  (. . )\n\t\t\t\t   (            )\n\n";
     cout<<"\t*************************** Student Menu *****************************\n";
     cout<<"\n\t\t1.Search Book\n\n\t\t2.Issue Books\n\n\t\t3.Return Book\n\n\t\t4.Back to Menu\n";
@@ -78,23 +78,29 @@ void MainMenu_Student()
     cout<<"\t\tEnter your choice : ";
     cin >> Choice;
     
-    if(Choice == 1){
+    switch(Choice[0]){
+    case '1':{
         system("cls");
         SearchBook();
-    }else if(Choice == 2){
+        break;
+    }case '2':{
         system("cls");
         IssueBook();
-    }else if(Choice == 3){
+        break;
+    }case '3':{
         system("cls");
         ReturnBook();
-    }else if(Choice == 4){
+        break;
+    }case '4':{
         system("cls");
         Select_role();
-    }else{
+        break;
+    }default:{
         cout<<"Please enter correct option :(";
         getch();
         system("CLS");
         MainMenu_Student();
+     }
     }
 }
 
