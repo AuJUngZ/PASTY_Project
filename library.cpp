@@ -36,35 +36,35 @@ string printBuildDateTime () {
 }
 
 void Select_role(){
-    system("cls");
-    int Choice;
-    cout<< "\n\t\t\t  A_____A\n\t\t\t ( O w O )\n\t\t\t/  v   v  \\\n" << "\t\t       *~ welcome ~*\n";
-    cout<<"\n\t*********** PASTY MANAGEMENT SYSTEM ***********\n";
-    cout<<"\n\t\t>>Please Choose Any Option To login \n";
-    cout<<"\n\t\t1.Student\n\n\t\t2.Admin\n\n\t\t3.Close Application\n\n";
-    cout<<"\t***********************************************";
-    cout<<"\n\t\tEnter your choice : ";
-    cin >> Choice;
-    
-    switch (Choice) {
-        case 1:{
-            system("cls");
-            MainMenu_Student();}
-            break;
-        case 2:{
-            system("cls");
-            MainMenu_Admin();}
-            break;
-        case 3:{
-            system("cls");
-            exit(0);}
-            break;
-        default:
-            cout<<"\n\t\tPlease enter correct option :(";
-            getch();
-            system("CLS");
-            Select_role();
-    }
+    char Choice[100];
+    do{
+        system("cls");
+        cout<< "\n\t\t\t  A_____A\n\t\t\t ( O w O )\n\t\t\t/  v   v  \\\n" << "\t\t       *~ welcome ~*\n";
+        cout<<"\n\t*********** PASTY MANAGEMENT SYSTEM ***********\n";
+        cout<<"\n\t\t>>Please Choose Any Option To login \n";
+        cout<<"\n\t\t1.Student\n\n\t\t2.Admin\n\n\t\t3.Close Application\n\n";
+        cout<<"\t***********************************************";
+        cout<<"\n\t\tEnter your choice : ";
+        cin >> Choice;
+        
+        switch (Choice[0]) {
+            case '1':{
+                system("cls");
+                MainMenu_Student();}
+                break;
+            case '2':{
+                system("cls");
+                MainMenu_Admin();}
+                break;
+            case '3':{
+                system("cls");
+                exit(0);}
+                break;
+            default:
+                cout<<"\n\t\tPlease enter correct option :(";
+                getch();
+        }
+    }while(Choice[0] != '3');
 }
 
 void MainMenu_Student()
@@ -105,64 +105,65 @@ string toUpperStr(string x){
 }
 void MainMenu_Admin(){
     system("cls");
-    int Choice;
-    cout<<"\t\t\t\t     /)/)  (\\(\\\n\t\t\t\t   ( . .)  (. . )\n\t\t\t\t   (            )\n\n";
-    cout<<"\t*************************** Admin Menu *******************************\n";
-    cout<<"\n\t\t1.Add & Delete Book\n\n\t\t2.Issue Book\n\n\t\t3.Search book\n\n\t\t4.Back to Menu\n";
-    cout<<"\n\t**********************************************************************\n";
-    cout<<"\t\tEnter your choice : ";
-    cin >> Choice;
-    switch (Choice) {
-        case 1: {
-            system("cls");
-            int ognChoice;
-            bool checkc = true;
-            do{
-                cout<<"\t\t\t\t       (\\_/)\n\t\t\t\t       (o.o)\n\t\t\t\t       />\"<\\\n\t\t\t\t       \\___/\n\n";
-                cout <<"\t*************************** Add & Delete*****************************\n";
-                cout<<"\n\t\t1.Add to Collection\n\n\t\t2.Delete from Collection\n\n\t\t3.Back to Admin Main Menu\n";
-                cout <<"\n\t*********************************************************************\n";
-                cout<<"\t\tEnter your choice : ";
-                cin >> ognChoice;
-                switch (ognChoice) {
-                    case 1:
-                        system("cls");
-                        AddBook();
-                        break;
-                    case 2:
-                        system("cls");
-                        DeleteBook();
-                        break;
-                    case 3:
-                        system("cls");
-                        MainMenu_Admin();
-                        break;
-                    default:
-                        cout<<"Please enter correct option :(";
-                        getch();
-                        system("CLS");
-                        checkc = false;
-                }
-            }while (checkc == false);}
-            break;
-        case 2:{
-            system("cls");
-            IssueBook();}
-            break;
-        case 3:{
-            system("cls");
-            SearchBook();}
-            break;
-        case 4:{
-            system("cls");
-            Select_role();}
-            break;
-        default:
-            cout << "Invalid command";
-            getch();
-            system("CLS");
-            MainMenu_Admin();
-    }
+    char Choice[100];
+    do{
+        cout<<"\t\t\t\t     /)/)  (\\(\\\n\t\t\t\t   ( . .)  (. . )\n\t\t\t\t   (            )\n\n";
+        cout<<"\t*************************** Admin Menu *******************************\n";
+        cout<<"\n\t\t1.Add & Delete Book\n\n\t\t2.Issue Book\n\n\t\t3.Search book\n\n\t\t4.Back to Menu\n";
+        cout<<"\n\t**********************************************************************\n";
+        cout<<"\t\tEnter your choice : ";
+        cin >> Choice;
+        switch (Choice[0]) {
+            case '1': {
+                system("cls");
+                char ognChoice[100];
+                bool checkc = true;
+                do{
+                    cout<<"\t\t\t\t       (\\_/)\n\t\t\t\t       (o.o)\n\t\t\t\t       />\"<\\\n\t\t\t\t       \\___/\n\n";
+                    cout <<"\t*************************** Add & Delete*****************************\n";
+                    cout<<"\n\t\t1.Add to Collection\n\n\t\t2.Delete from Collection\n\n\t\t3.Back to Admin Main Menu\n";
+                    cout <<"\n\t*********************************************************************\n";
+                    cout<<"\t\tEnter your choice : ";
+                    cin >> ognChoice;
+                    switch (ognChoice[0]) {
+                        case '1':
+                            system("cls");
+                            AddBook();
+                            break;
+                        case '2':
+                            system("cls");
+                            DeleteBook();
+                            break;
+                        case '3':
+                            system("cls");
+                            MainMenu_Admin();
+                            break;
+                        default:
+                            cout<<"Please enter correct option :(";
+                            getch();
+                            system("CLS");
+                            checkc = false;
+                    }
+                }while (checkc == false);}
+                break;
+            case '2':{
+                system("cls");
+                IssueBook();}
+                break;
+            case '3':{
+                system("cls");
+                SearchBook();}
+                break;
+            case '4':{
+                system("cls");
+                Select_role();}
+                break;
+            default:
+                cout << "Invalid command";
+                getch();
+                system("cls");
+        }
+    }while(Choice[0] != '4');
 }
 
 void AddBook(){
