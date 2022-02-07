@@ -242,7 +242,7 @@ void show(){
 }
 
 void SearchFormBookId(){
-    int choice;
+    char choice[100];
     fstream myfile;
     myfile.open("BookList.txt");
     bool check = false;
@@ -277,13 +277,19 @@ void SearchFormBookId(){
             system("cls");
             SearchBook();
         }
-        cout << "1.Search again\n";
-        cout << "Press any key to back to menu.";
-        cout << "\nEnter your choice : ";
-        cin >> choice;
-        system("cls");
-        if(choice == 1) SearchBook();
-        else MainMenu_Student();
+        do{
+            cout << "\n\t1.Search again\n";
+            cout << "\t2.Back to menu.";
+            cout << "\n\tEnter your choice : ";
+            cin >> choice;
+            switch(choice[0]){
+            case '1': 
+                SearchBook();
+                break;
+            case '2':
+                Select_role();
+            }
+        }while(choice[0] != '2');
         
     }else{
         cout << "File not found.\n";
@@ -296,7 +302,7 @@ void SearchFormBookId(){
 }
 
 void SearchFormBookName(){
-    int choice;
+    char choice[100];
     fstream myfile;
     bool check = false;
     myfile.open("BookList.txt");
@@ -331,13 +337,19 @@ void SearchFormBookName(){
             system("cls");
             SearchBook();
         }
-        cout << "1.Search again\n";
-        cout << "Press any key to back to menu.";
-        cout << "\nEnter your choice : ";
-        cin >> choice;
-        system("cls");
-        if(choice == 1) SearchBook();
-        else MainMenu_Student();
+        do{
+            cout << "\n\t1.Search again\n";
+            cout << "\t2.Back to menu.";
+            cout << "\n\tEnter your choice : ";
+            cin >> choice;
+            switch(choice[0]){
+            case '1': 
+                SearchBook();
+                break;
+            case '2':
+                Select_role();
+            }
+        }while(choice[0] != '2');
     }else{
         cout << "File not found.\n";
         cout << "Press Enter to back to menu.\n";
@@ -349,24 +361,26 @@ void SearchFormBookName(){
 }
 
 void SearchBook(){
-    int choice;
-    cout<<"\t\t\t\t       (\\_/)\n\t\t\t\t       (o.o)\n\t\t\t\t       />\"<\\\n\t\t\t\t       \\___/\n\n";
-    cout<<"\t*************************** Search Menu *******************************\n";
-    cout << "\n\t\t1.Search from Books ID \n\n\t\t2.Search from BookName\n";
-    cout<<"\n\t***********************************************************************\n";
-    cout << "\t\tEnter choice : ";
-    cin >> choice;
-    
-        if(choice == 1){
-            SearchFormBookId();
-        } else if(choice == 2) {
-            SearchFormBookName();
-        } else {
-            cout<<"Please enter correct option :(";
-            getch();
-            system("CLS");
-            SearchBook();
-        }
+    char choice[100];
+    do{
+        system("cls");
+        cout<<"\t\t\t\t       (\\_/)\n\t\t\t\t       (o.o)\n\t\t\t\t       />\"<\\\n\t\t\t\t       \\___/\n\n";
+        cout<<"\t*************************** Search Menu *******************************\n";
+        cout << "\n\t\t1.Search from Books ID. \n\n\t\t2.Search from BookName.\n\n\t\t3.Back to menu.";
+        cout<<"\n\t***********************************************************************\n";
+        cout << "\t\tEnter choice : ";
+        cin >> choice;
+            switch(choice[0]){
+                case '1':
+                    SearchFormBookId();
+                    break;
+                case '2':
+                    SearchFormBookName();
+                    break;
+                case '3':
+                    Select_role();
+            }
+    }while(choice[0] != '3');
 }
 //Search
 
@@ -531,7 +545,7 @@ void IssueBook(){
     system("cls");
     cout<<"\t\t\t\t       (\\_/)\n\t\t\t\t       (o.o)\n\t\t\t\t       />\"<\\\n\t\t\t\t       \\___/\n\n";
     cout<<"\t*************************** Issue Menu *******************************\n";
-    cout << "\n\t\t1.Issue From Id\n\n\t\t2.Issue Form Name\n";
+    cout << "\n\t\t1.Issue From Id\n\n\t\t2.Issue Form Name\n\n\t\t3.Back to menu";
     cout<<"\n\t***********************************************************************\n";
     cout<<"\t\tEnter your choice : ";
     cin >> choice;
@@ -552,20 +566,49 @@ void IssueBook(){
         cout << "Please Enter your name : ";
         getline(cin,name);
         t = 1;
+    }else{
+        myfile.close();
+        newfile.close();
+        issuefile.close();
+        Select_role();
     }
+    
     if(myfile.is_open()){
         string z;
         vector<string> v;
-
         while(getline(myfile,z)){
             v = delcomma(z);
-            if(toUpperStr(key) == toUpperStr(v.at(t))){
-                newfile << v.at(0) << "," << v.at(1) << "," << v.at(2) << "," << stoi(v.at(3))-1 << endl;
-                issuefile << name << "," << v.at(0) << "," << v.at(1) << "," << printBuildDateTime() <<endl;
+            if(stoi(v.at(3)) != 0){
+                if(toUpperStr(key) == toUpperStr(v.at(t))){
+                    newfile << v.at(0) << "," << v.at(1) << "," << v.at(2) << "," << stoi(v.at(3))-1 << endl;
+                    issuefile << name << "," << v.at(0) << "," << v.at(1) << "," << printBuildDateTime() <<endl;
+                }else{
+                    newfile << v.at(0) << "," << v.at(1) << "," << v.at(2) << "," << v.at(3) << endl;
+                }
             }else{
                 newfile << v.at(0) << "," << v.at(1) << "," << v.at(2) << "," << v.at(3) << endl;
+                myfile.close();
+                newfile.close();
+                issuefile.close();
+                remove("BookList.txt");
+                rename("NewBookList.txt", "BookList.txt");
+                cout << "This book is not enough for issue.\n";
+                cout << "Will you continue to issue?(Yes : y || No : n) : ";
+                cin  >> con;
+                do{
+                    if( con == "y"){
+                            IssueBook();
+                    }
+                    else if (con == "n"){
+                            Select_role();
+                    }
+                    else{
+                            cout << "Invalid command";
+                    }
+                } while(true);
             }
         }
+    }
         myfile.close();
         newfile.close();
         issuefile.close();
@@ -587,4 +630,3 @@ void IssueBook(){
             }
         } while(true);
     }
-}
