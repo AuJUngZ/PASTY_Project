@@ -224,11 +224,14 @@ vector<string> delcomma(string line){
 
 
 void show(){
+    system("cls");
+    char choice[100];
     fstream myfile;
     myfile.open("BookList.txt");
     string textline;
     vector<string> BookInfo;
     while(getline(myfile,textline)){
+        BookInfo = delcomma(textline);
         cout << "*******************************************************************************" << endl;
         cout << "\n";
         cout << "Book Id : " << BookInfo.at(0) << "\t";
@@ -239,6 +242,15 @@ void show(){
         cout << "*******************************************************************************" << endl;
     }
     myfile.close();
+    do{
+            cout << "\tBack to menu.";
+            cout << "\n\tEnter your choice : ";
+            cin >> choice;
+            switch(choice[0]){
+                default:
+                    Select_role();
+        }
+    }while(true);
 }
 
 void SearchFormBookId(){
@@ -366,7 +378,7 @@ void SearchBook(){
         system("cls");
         cout<<"\t\t\t\t       (\\_/)\n\t\t\t\t       (o.o)\n\t\t\t\t       />\"<\\\n\t\t\t\t       \\___/\n\n";
         cout<<"\t*************************** Search Menu *******************************\n";
-        cout << "\n\t\t1.Search from Books ID. \n\n\t\t2.Search from BookName.\n\n\t\t3.Back to menu.";
+        cout << "\n\t\t1.Search from Books ID. \n\n\t\t2.Search from BookName.\n\n\t\t3.All book in library.\n\n\t\t4.Back to Menu";
         cout<<"\n\t***********************************************************************\n";
         cout << "\t\tEnter choice : ";
         cin >> choice;
@@ -378,6 +390,9 @@ void SearchBook(){
                     SearchFormBookName();
                     break;
                 case '3':
+                    show();
+                    break;
+                case '4':
                     Select_role();
             }
     }while(choice[0] != '3');
