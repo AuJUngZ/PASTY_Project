@@ -7,6 +7,7 @@
 #include <sstream>
 using namespace std;
 
+int state;
 
 string BookName, Auther, Id;
 int Quatity;
@@ -14,6 +15,7 @@ string toUpperStr(string );
 string printBuildDateTime();
 void Select_role();
 void MainMenu_Student();
+void PassWord();
 void MainMenu_Admin();
 void AddBook();
 vector<string> delcomma(string line);
@@ -21,7 +23,6 @@ void ShowBook();
 void SearchBook();
 void IssueBook();
 void ReturnBook();
-void PassWord();
 void DeleteBook();
 
 ///////////////////////////
@@ -53,9 +54,9 @@ void Select_role(){
                 MainMenu_Student();}
                 break;
             case '2':{
-                system("cls");
-                MainMenu_Admin();}
+                PassWord();
                 break;
+                }
             case '3':{
                 system("cls");
                 exit(0);}
@@ -69,6 +70,7 @@ void Select_role(){
 
 void MainMenu_Student()
 {
+    state = 1;
     system("cls");
     char Choice[100];
     cout<<"\t\t\t\t     /)/)  (\\(\\\n\t\t\t\t   ( . .)  (. . )\n\t\t\t\t   (            )\n\n";
@@ -110,6 +112,7 @@ string toUpperStr(string x){
     return y;
 }
 void MainMenu_Admin(){
+    state = 2;
     system("cls");
     char Choice[100];
     do{
@@ -393,7 +396,11 @@ void SearchBook(){
                     show();
                     break;
                 case '4':
-                    Select_role();
+                    if(state == 1){
+                        MainMenu_Student();
+                    }else if(state == 2){
+                        MainMenu_Admin();
+                    }
             }
     }while(choice[0] != '3');
 }
@@ -466,8 +473,11 @@ void ReturnBook(){
                 break;
             }
             else if (con == "n"){
-                Select_role();
-                break;
+                if(state == 1){
+                    MainMenu_Student();
+                }else if(state == 2){
+                    MainMenu_Admin();
+                }
             }
             else{
                 cout << "Invalid command";
@@ -581,11 +591,26 @@ void IssueBook(){
         cout << "Please Enter your name : ";
         getline(cin,name);
         t = 1;
-    }else{
+    } else if (choice == 3) {
         myfile.close();
         newfile.close();
         issuefile.close();
-        Select_role();
+        if(state == 1){
+           MainMenu_Student();
+        }else if(state == 2){
+            MainMenu_Admin();
+        }
+    } else{
+        myfile.close();
+        newfile.close();
+        issuefile.close();
+        cout << "\t\tWrong answer...\n\t\tAuto back to menu Press Enter";
+        getch();
+        if(state == 1){
+           MainMenu_Student();
+        }else if(state == 2){
+            MainMenu_Admin();
+        }
     }
     
     if(myfile.is_open()){
@@ -645,3 +670,44 @@ void IssueBook(){
             }
         } while(true);
     }
+void PassWord(){
+    int i=0;
+    char ch,st[21],ch1[21]={"KarnlnwZa007"};
+    cout << "\n\t\tEnter Password : ";
+    while(1)
+    {
+        ch=getch();
+        if(ch==13)
+        {
+            st[i]='\0';
+            break;
+        }
+        else if(ch==8&&i>0)
+        {
+            i--;
+            cout<<"\b \b";
+        }
+        else
+        {
+            cout<<"*";
+            st[i]=ch;
+            i++;
+        }
+    }
+    ifstream inf("Password.txt");
+    inf>>ch1;
+    inf.close();
+    for(i=0;st[i]==ch1[i]&&st[i]!='\0'&&ch1[i]!='\0';i++);
+    if(st[i]=='\0'&&ch1[i]=='\0')
+    {
+        system("cls");
+        MainMenu_Admin();
+    }
+    else
+    {
+        cout<<"\n\n\t\tWrong Password.\n\n\t\ttry again.....\n";
+        getch();
+        system("cls");
+        Select_role();
+    }
+}
