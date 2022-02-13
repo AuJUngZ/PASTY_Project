@@ -7,7 +7,7 @@
 #include <sstream>
 using namespace std;
 
-int state;
+int state,day;
 
 string BookName, Auther, Id;
 int Quatity;
@@ -578,6 +578,8 @@ void IssueBook(){
         system("cls");
         cout << "Please Enter the Id of record you want to issue: ";  
         cin >> key;
+        cout << "Please enter How many days will you borrow: ";
+        cin >> day;
         cout << "Please Enter your name : ";
         cin.ignore();
         getline(cin,name);
@@ -588,6 +590,8 @@ void IssueBook(){
         cout << "Please Enter the name of record you want to issue: ";
         cin.ignore();
         getline(cin,key);
+        cout << "Please enter How many days will you borrow: ";
+        cin >> day;
         cout << "Please Enter your name : ";
         getline(cin,name);
         t = 1;
@@ -621,7 +625,7 @@ void IssueBook(){
             if(stoi(v.at(3)) != 0){
                 if(toUpperStr(key) == toUpperStr(v.at(t))){
                     newfile << v.at(0) << "," << v.at(1) << "," << v.at(2) << "," << stoi(v.at(3))-1 << endl;
-                    issuefile << name << "," << v.at(0) << "," << v.at(1) << "," << printBuildDateTime() <<endl;
+                    issuefile << name << "," << v.at(0) << "," << v.at(1) << "," << printBuildDateTime() <<","<<day<<endl;
                 }else{
                     newfile << v.at(0) << "," << v.at(1) << "," << v.at(2) << "," << v.at(3) << endl;
                 }
@@ -656,6 +660,7 @@ void IssueBook(){
         rename("NewBookList.txt", "BookList.txt");
         system("cls");
         cout << "successfully issue... have fun :D\n" << endl;
+        cout << "You must return the book after "<< day <<" days today.";
         cout << "Will you continue to issue?(Yes : y || No : n) : ";
         cin  >> con;
         do{
@@ -669,7 +674,39 @@ void IssueBook(){
                 cout << "Invalid command";
             }
         } while(true);
+}
+
+void ShowIssueList(){
+    system("cls");
+    char choice[100];
+    ifstream myfile;
+    myfile.open("IssueList.txt");
+    string textline;
+    vector<string> IssueListInfo;
+    while(getline(myfile,textline)){
+        IssueListInfo = delcomma(textline);
+        cout << "*******************************************************************************" << endl;
+        cout << "\n";
+        cout << "Borrower: " << IssueListInfo.at(0) << "\t";
+        cout << "Book ID: " << IssueListInfo.at(1) << "\t";
+        cout << "Book ID Name: " << IssueListInfo.at(2) << "\t" << "\n\n";
+        cout << "Borrowed time : " << IssueListInfo.at(3) << "\t" <<"\n\n";
+        cout << "Time to return : "<< IssueListInfo.at(4) <<" day After Borrowed time.\n";
+        cout << "\n";
+        cout << "*******************************************************************************" << endl;
     }
+    myfile.close();
+    do{
+            cout << "\tBack to menu.";
+            cout << "\n\tEnter your choice : ";
+            cin >> choice;
+            switch(choice[0]){
+                default:
+                    Select_role();
+        }
+    }while(true);
+
+}
 void PassWord(){
     int i=0;
     char ch,st[21],ch1[21]={"KarnlnwZa007"};
