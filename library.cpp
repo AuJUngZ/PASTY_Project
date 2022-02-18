@@ -22,6 +22,7 @@ vector<string> delcomma(string line);
 void ShowBook();
 void SearchBook();
 void IssueBook();
+void ShowIssueList();
 void ReturnBook();
 void DeleteBook();
 
@@ -118,7 +119,7 @@ void MainMenu_Admin(){
     do{
         cout<<"\t\t\t\t     /)/)  (\\(\\\n\t\t\t\t   ( . .)  (. . )\n\t\t\t\t   (            )\n\n";
         cout<<"\t*************************** Admin Menu *******************************\n";
-        cout<<"\n\t\t1.Add & Delete Book\n\n\t\t2.Issue Book\n\n\t\t3.Search book\n\n\t\t4.Back to Menu\n";
+        cout<<"\n\t\t1.Add & Delete Book\n\n\t\t2.Issue Book\n\n\t\t3.Search book\n\n\t\t4.View issue list\n\n\t\t5.Back to menu\n";
         cout<<"\n\t**********************************************************************\n";
         cout<<"\t\tEnter your choice : ";
         cin >> Choice;
@@ -164,6 +165,10 @@ void MainMenu_Admin(){
                 SearchBook();}
                 break;
             case '4':{
+                system("cls");
+                ShowIssueList();}
+                break;
+            case '5':{
                 system("cls");
                 Select_role();}
                 break;
@@ -381,7 +386,7 @@ void SearchBook(){
         system("cls");
         cout<<"\t\t\t\t       (\\_/)\n\t\t\t\t       (o.o)\n\t\t\t\t       />\"<\\\n\t\t\t\t       \\___/\n\n";
         cout<<"\t*************************** Search Menu *******************************\n";
-        cout << "\n\t\t1.Search from Books ID. \n\n\t\t2.Search from BookName.\n\n\t\t3.All book in library.\n\n\t\t4.Back to Menu";
+        cout << "\n\t\t1.Search from Books ID. \n\n\t\t2.Search from BookName.\n\n\t\t3.All book in library.\n\n\t\t4.Back to Menu\n";
         cout<<"\n\t***********************************************************************\n";
         cout << "\t\tEnter choice : ";
         cin >> choice;
@@ -412,7 +417,7 @@ void ReturnBook(){
     system("cls");
     cout<<"\t\t\t\t       (\\_/)\n\t\t\t\t       (o.o)\n\t\t\t\t       />\"<\\\n\t\t\t\t       \\___/\n\n";
     cout<<"\t*************************** Return Menu *******************************\n";
-    cout << "\n\t\t1.Return From Id\n\n\t\t2.Return Form Name\n";
+    cout << "\n\t\t1.Return From Id\n\n\t\t2.Return Form Name\n\n\t\t3.Back to menu\n";
     cout<<"\n\t***********************************************************************\n";
     cout<<"\t\tEnter your choice : ";
     cin >> choice;
@@ -436,6 +441,12 @@ void ReturnBook(){
             getline(cin,name);
             t = 1;
             break;
+        case 3:
+            if(state == 1){
+                MainMenu_Student();
+            }else if(state == 2){
+                MainMenu_Admin();
+            }
         default:
             cout << "Invalid command";
             getch();
@@ -501,7 +512,7 @@ void DeleteBook(){
     vector<string> info;
     cout << "\t\t\t                                .-.\n\t\t\t   (___________________________()6 `-,\n\t\t\t   (   ______________________   /''\"`\n\t\t\t   //\\\\                      //\\\\\n\t\t\t   \"\" \"\"                     \"\" \"\"\n\n";
     cout<<"\t*************************** Delete Book *****************************\n";
-    cout<<"\n\t\t1.Delete From Id\n\n\t\t2.Delete Form Name\n\n\t\t3.Return Book\n";
+    cout<<"\n\t\t1.Delete From Id\n\n\t\t2.Delete Form Name\n\n\t\t3.Back to menu\n";
     cout<<"\n\t********************************************************************\n";
     cout<<"\t\tEnter your choice : ";
     cin >> choice;
@@ -570,7 +581,7 @@ void IssueBook(){
     system("cls");
     cout<<"\t\t\t\t       (\\_/)\n\t\t\t\t       (o.o)\n\t\t\t\t       />\"<\\\n\t\t\t\t       \\___/\n\n";
     cout<<"\t*************************** Issue Menu *******************************\n";
-    cout << "\n\t\t1.Issue From Id\n\n\t\t2.Issue Form Name\n\n\t\t3.Back to menu";
+    cout << "\n\t\t1.Issue From Id\n\n\t\t2.Issue Form Name\n\n\t\t3.Back to menu\n";
     cout<<"\n\t***********************************************************************\n";
     cout<<"\t\tEnter your choice : ";
     cin >> choice;
