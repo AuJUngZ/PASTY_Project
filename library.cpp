@@ -256,7 +256,11 @@ void show(){
             cin >> choice;
             switch(choice[0]){
                 default:
-                    Select_role();
+                    if(state == 1){
+                    MainMenu_Student();
+                }else if(state == 2){
+                    MainMenu_Admin();
+                }
         }
     }while(true);
 }
@@ -307,7 +311,11 @@ void SearchFormBookId(){
                 SearchBook();
                 break;
             case '2':
-                Select_role();
+                if(state == 1){
+                    MainMenu_Student();
+                }else if(state == 2){
+                    MainMenu_Admin();
+                }
             }
         }while(choice[0] != '2');
         
@@ -367,7 +375,11 @@ void SearchFormBookName(){
                 SearchBook();
                 break;
             case '2':
-                Select_role();
+                if(state == 1){
+                    MainMenu_Student();
+                }else if(state == 2){
+                    MainMenu_Admin();
+                }
             }
         }while(choice[0] != '2');
     }else{
@@ -501,7 +513,7 @@ void ReturnBook(){
 
 
 void DeleteBook(){
-    bool check = false;
+    bool check = false,check_state = true;
     int choice;
     system("cls");
     string txtline,key;
@@ -510,22 +522,35 @@ void DeleteBook(){
     ofstream newfile;
     newfile.open("newBookList.txt");
     vector<string> info;
+    do{
     cout << "\t\t\t                                .-.\n\t\t\t   (___________________________()6 `-,\n\t\t\t   (   ______________________   /''\"`\n\t\t\t   //\\\\                      //\\\\\n\t\t\t   \"\" \"\"                     \"\" \"\"\n\n";
     cout<<"\t*************************** Delete Book *****************************\n";
     cout<<"\n\t\t1.Delete From Id\n\n\t\t2.Delete Form Name\n\n\t\t3.Back to menu\n";
     cout<<"\n\t********************************************************************\n";
     cout<<"\t\tEnter your choice : ";
     cin >> choice;
-    if(choice == 1){
-        system("cls");
-        cout << "Please Enter the Id of record you want to delete: ";  
-        cin >> key;
-    }
-    else if (choice == 2) {
-        system("cls");
-        cout << "Please Enter the name of record you want to delete: ";
-        getline(cin,key);
-    }
+    switch(choice){
+        case 1:
+            system("cls");
+            cout << "Please Enter the Id of record you want to delete: ";  
+            cin >> key;
+            check_state = false;
+            break;
+        case 2:
+            system("cls");
+            cout << "Please Enter the name of record you want to delete: ";
+            getline(cin,key);
+            check_state = false;
+            break;
+        case 3:
+            system("cls");
+            if(state == 1){
+                MainMenu_Student();
+            }else if(state == 2){
+                MainMenu_Admin();
+            }
+        }
+    }while(check_state);
     if(myfile.is_open()){
         int t;
         while(getline(myfile,txtline)){
@@ -655,7 +680,11 @@ void IssueBook(){
                             IssueBook();
                     }
                     else if (con == "n"){
-                            Select_role();
+                            if(state == 1){
+                                MainMenu_Student();
+                            }else if(state == 2){
+                                MainMenu_Admin();
+                            }
                     }
                     else{
                             cout << "Invalid command";
@@ -713,7 +742,11 @@ void ShowIssueList(){
             cin >> choice;
             switch(choice[0]){
                 default:
-                    Select_role();
+                    if(state == 1){
+                    MainMenu_Student();
+                }else if(state == 2){
+                    MainMenu_Admin();
+                }
         }
     }while(true);
 
