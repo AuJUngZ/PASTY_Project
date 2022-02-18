@@ -1,2 +1,4 @@
-640610658,C++,Karn,2
-640610658,C++,Karn,1
+1,C++,Karn,10
+2,Java,Karn,10
+3,Thai,Karn,5
+4,Programmer,Karn,5
