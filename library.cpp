@@ -3,12 +3,15 @@
 #include <string>
 #include <conio.h>
 #include <stdlib.h>
+#include <ctime>
 #include <vector>
 #include <sstream>
+#include <windows.h>
 using namespace std;
 
 int state,day;
-
+int color = 6;
+HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 string BookName, Auther, Id;
 int Quatity;
 string toUpperStr(string );
@@ -28,6 +31,7 @@ void DeleteBook();
 
 ///////////////////////////
 int main(){
+    srand(time(0));
     Select_role();
 }
 //////////////////////////
@@ -41,10 +45,41 @@ void Select_role(){
     char Choice[100];
     do{
         system("cls");
-        cout<< "\n\t\t\t  A_____A\n\t\t\t ( O w O )\n\t\t\t/  v   v  \\\n" << "\t\t       *~ welcome ~*\n";
+        
+        SetConsoleTextAttribute(h,15);
+        cout<< "\n\t\t\t  A_____A\n\t\t\t ( ";
+        SetConsoleTextAttribute(h,13);
+        cout << "O ";
+        SetConsoleTextAttribute(h,15);
+        cout << "w";
+        SetConsoleTextAttribute(h,13);
+        cout <<" O ";
+        SetConsoleTextAttribute(h,15);
+        cout <<")\n\t\t\t/  v   v  \\\n"; 
+        SetConsoleTextAttribute(h,8);
+        cout<< "\t\t       *~ ";
+        SetConsoleTextAttribute(h,5);
+        cout <<"w";
+        SetConsoleTextAttribute(h,3);
+        cout <<"e";
+        SetConsoleTextAttribute(h,1);
+        cout <<"l";
+        SetConsoleTextAttribute(h,10);
+        cout <<"c";
+        SetConsoleTextAttribute(h,14);
+        cout <<"o";
+        SetConsoleTextAttribute(h,12);
+        cout <<"m";
+        SetConsoleTextAttribute(h,4);
+        cout <<"e ";
+        SetConsoleTextAttribute(h,8);
+        cout << "~*\n";
+        SetConsoleTextAttribute(h,14);
         cout<<"\n\t*********** PASTY MANAGEMENT SYSTEM ***********\n";
+        SetConsoleTextAttribute(h,9);
         cout<<"\n\t\t>>Please Choose Any Option To login \n";
         cout<<"\n\t\t1.Student\n\n\t\t2.Admin\n\n\t\t3.Close Application\n\n";
+        SetConsoleTextAttribute(h,14);
         cout<<"\t***********************************************";
         cout<<"\n\t\tEnter your choice : ";
         cin >> Choice;
@@ -63,6 +98,7 @@ void Select_role(){
                 exit(0);}
                 break;
             default:
+                SetConsoleTextAttribute(h,4);
                 cout<<"\n\t\tPlease enter correct option :(";
                 getch();
         }
@@ -74,9 +110,21 @@ void MainMenu_Student()
     state = 1;
     system("cls");
     char Choice[100];
-    cout<<"\t\t\t\t     /)/)  (\\(\\\n\t\t\t\t   ( . .)  (. . )\n\t\t\t\t   (            )\n\n";
+        SetConsoleTextAttribute(h,15);
+        cout<<"\t\t\t\t     /)/)  (\\(\\\n\t\t\t\t   ( ";
+        SetConsoleTextAttribute(h,13);
+        cout<<". .";
+        SetConsoleTextAttribute(h,15);
+        cout<<")  (";
+        SetConsoleTextAttribute(h,13);
+        cout<<". . ";
+        SetConsoleTextAttribute(h,15);
+        cout<<")\n\t\t\t\t   (            )\n\n";
+    SetConsoleTextAttribute(h,14);
     cout<<"\t*************************** Student Menu *****************************\n";
+    SetConsoleTextAttribute(h,9);
     cout<<"\n\t\t1.Search Book\n\n\t\t2.Issue Books\n\n\t\t3.Return Book\n\n\t\t4.Back to Menu\n";
+    SetConsoleTextAttribute(h,14);
     cout<<"\n\t********************************************************************\n";
     cout<<"\t\tEnter your choice : ";
     cin >> Choice;
@@ -99,6 +147,7 @@ void MainMenu_Student()
         Select_role();
         break;
     }default:{
+        SetConsoleTextAttribute(h,4);
         cout<<"Please enter correct option :(";
         getch();
         system("CLS");
@@ -116,10 +165,22 @@ void MainMenu_Admin(){
     state = 2;
     system("cls");
     char Choice[100];
-    do{
-        cout<<"\t\t\t\t     /)/)  (\\(\\\n\t\t\t\t   ( . .)  (. . )\n\t\t\t\t   (            )\n\n";
+    do{ 
+        SetConsoleTextAttribute(h,15);
+        cout<<"\t\t\t\t     /)/)  (\\(\\\n\t\t\t\t   ( ";
+        SetConsoleTextAttribute(h,13);
+        cout<<". .";
+        SetConsoleTextAttribute(h,15);
+        cout<<")  (";
+        SetConsoleTextAttribute(h,13);
+        cout<<". . ";
+        SetConsoleTextAttribute(h,15);
+        cout<<")\n\t\t\t\t   (            )\n\n";
+        SetConsoleTextAttribute(h,14);
         cout<<"\t*************************** Admin Menu *******************************\n";
+        SetConsoleTextAttribute(h,9);
         cout<<"\n\t\t1.Add & Delete Book\n\n\t\t2.Issue Book\n\n\t\t3.Search book\n\n\t\t4.View issue list\n\n\t\t5.Back to menu\n";
+        SetConsoleTextAttribute(h,14);
         cout<<"\n\t**********************************************************************\n";
         cout<<"\t\tEnter your choice : ";
         cin >> Choice;
@@ -129,9 +190,21 @@ void MainMenu_Admin(){
                 char ognChoice[100];
                 bool checkc = true;
                 do{
-                    cout<<"\t\t\t\t       (\\_/)\n\t\t\t\t       (o.o)\n\t\t\t\t       />\"<\\\n\t\t\t\t       \\___/\n\n";
+                    SetConsoleTextAttribute(h,15);
+                    cout<<"\t\t\t\t       (\\_/)\n\t\t\t\t       (";
+                    SetConsoleTextAttribute(h,13);
+                    cout <<"o";
+                    SetConsoleTextAttribute(h,8);
+                    cout << ".";
+                    SetConsoleTextAttribute(h,13);
+                    cout << "o";
+                    SetConsoleTextAttribute(h,15);
+                    cout <<")\n\t\t\t\t       />\"<\\\n\t\t\t\t       \\___/\n\n";
+                    SetConsoleTextAttribute(h,14);
                     cout <<"\t*************************** Add & Delete*****************************\n";
+                    SetConsoleTextAttribute(h,9);
                     cout<<"\n\t\t1.Add to Collection\n\n\t\t2.Delete from Collection\n\n\t\t3.Back to Admin Main Menu\n";
+                    SetConsoleTextAttribute(h,14);
                     cout <<"\n\t*********************************************************************\n";
                     cout<<"\t\tEnter your choice : ";
                     cin >> ognChoice;
@@ -182,7 +255,9 @@ void MainMenu_Admin(){
 
 void AddBook(){
     system("cls");
+    SetConsoleTextAttribute(h,15);
     cout << "\t\t\t                                .-.\n\t\t\t   (___________________________()6 `-,\n\t\t\t   (   ______________________   /''\"`\n\t\t\t   //\\\\                      //\\\\\n\t\t\t   \"\" \"\"                     \"\" \"\"\n\n";
+    SetConsoleTextAttribute(h,14);
     cout << "\t************************ Adding Book ***************************" << endl;
     cout << "\n";
     int choice;
@@ -191,6 +266,7 @@ void AddBook(){
     fstream myfile;
     myfile.open("BookList.txt", ios::app);
     if(myfile.is_open()){
+        SetConsoleTextAttribute(h,9);
         cout << "\tEnter book ID : ";
         cin >> Id;
         cout << "\tEnter book name : ";
@@ -204,6 +280,7 @@ void AddBook(){
         // {BookId,BookName,Author,Quatity} //
     }
     cout << "\n";
+    SetConsoleTextAttribute(h,14);
     cout << "\t***************************************************************" << endl;
     cout << "\tYou want to add more book? : Press 1 --> Yes & Press anykey ->> Back to admin menu." << endl;
     cout << "\tEnter your choice : ";
@@ -240,18 +317,25 @@ void show(){
     vector<string> BookInfo;
     while(getline(myfile,textline)){
         BookInfo = delcomma(textline);
+        SetConsoleTextAttribute(h,color);
         cout << "*******************************************************************************" << endl;
+        SetConsoleTextAttribute(h,9);
         cout << "\n";
         cout << "Book Id : " << BookInfo.at(0) << "\t";
+        SetConsoleTextAttribute(h,12);
         cout << "Book Name : " << BookInfo.at(1) << "\t";
+        SetConsoleTextAttribute(h,10);
         cout << "Author : " << BookInfo.at(2) << "\t";
+        SetConsoleTextAttribute(h,5);
         cout << "Quatity : " << BookInfo.at(3) << "\t" << endl;
-        cout << "\n";
+         cout << "\n";
+        SetConsoleTextAttribute(h,color);
         cout << "*******************************************************************************" << endl;
+        
     }
     myfile.close();
-    do{
-            cout << "\tBack to menu.";
+    do{     
+            cout << "\t1.Back to menu.";
             cout << "\n\tEnter your choice : ";
             cin >> choice;
             switch(choice[0]){
@@ -282,26 +366,35 @@ void SearchFormBookId(){
         {
             BookInFo = delcomma(text);
             if(BookId==toUpperStr(BookInFo.at(0))){
+                SetConsoleTextAttribute(h,14);
                 cout << "***********************************************************************************" << endl;
+                SetConsoleTextAttribute(h,9);
                 cout << "\n";
-                cout << "Book Id : " << BookInFo.at(0) << "\t";
+                cout << "Book Id : " ;
+                cout<< BookInFo.at(0) << "\t";
+                SetConsoleTextAttribute(h,12);
                 cout << "Book Name : " << BookInFo.at(1) << "\t";
+                SetConsoleTextAttribute(h,10);
                 cout << "Author : " << BookInFo.at(2) << "\t";
+                SetConsoleTextAttribute(h,5);
                 cout << "Quatity : " << BookInFo.at(3) << "\t" << endl;
                 cout << "\n";
+                SetConsoleTextAttribute(h,14);
                 cout << "***********************************************************************************" << endl;
                 check = true;
             }
         }
         myfile.close();
         if(check == false){
+            SetConsoleTextAttribute(h,4);
             cout << "No Books.\n";
             cout << "Press Enter to back to menu.\n";
             getch();
             system("cls");
             SearchBook();
         }
-        do{
+        do{ 
+            SetConsoleTextAttribute(h,9);
             cout << "\n\t1.Search again\n";
             cout << "\t2.Back to menu.";
             cout << "\n\tEnter your choice : ";
@@ -320,6 +413,7 @@ void SearchFormBookId(){
         }while(choice[0] != '2');
         
     }else{
+        SetConsoleTextAttribute(h,4);
         cout << "File not found.\n";
         cout << "Press Enter to back to menu.\n";
         getch();
@@ -346,19 +440,27 @@ void SearchFormBookName(){
         while(getline(myfile,textline)){
             BookInFo = delcomma(textline);
             if(BookName == toUpperStr(BookInFo.at(1))){
+                SetConsoleTextAttribute(h,14);
                 cout << "***********************************************************************************" << endl;
+                SetConsoleTextAttribute(h,9);
                 cout << "\n";
-                cout << "Book Id : " << BookInFo.at(0) << "\t";
+                cout << "Book Id : " ;
+                cout<< BookInFo.at(0) << "\t";
+                SetConsoleTextAttribute(h,12);
                 cout << "Book Name : " << BookInFo.at(1) << "\t";
+                SetConsoleTextAttribute(h,10);
                 cout << "Author : " << BookInFo.at(2) << "\t";
+                SetConsoleTextAttribute(h,5);
                 cout << "Quatity : " << BookInFo.at(3) << "\t" << endl;
                 cout << "\n";
+                SetConsoleTextAttribute(h,14);
                 cout << "***********************************************************************************" << endl;
                 check = true;
              }
         }
         myfile.close();
         if(check == false){
+            SetConsoleTextAttribute(h,4);
             cout << "No Books.\n";
             cout << "Press Enter to back to menu.\n";
             getch();
@@ -366,6 +468,7 @@ void SearchFormBookName(){
             SearchBook();
         }
         do{
+            SetConsoleTextAttribute(h,9);
             cout << "\n\t1.Search again\n";
             cout << "\t2.Back to menu.";
             cout << "\n\tEnter your choice : ";
@@ -383,6 +486,7 @@ void SearchFormBookName(){
             }
         }while(choice[0] != '2');
     }else{
+        SetConsoleTextAttribute(h,4);
         cout << "File not found.\n";
         cout << "Press Enter to back to menu.\n";
         getch();
@@ -396,9 +500,21 @@ void SearchBook(){
     char choice[100];
     do{
         system("cls");
-        cout<<"\t\t\t\t       (\\_/)\n\t\t\t\t       (o.o)\n\t\t\t\t       />\"<\\\n\t\t\t\t       \\___/\n\n";
+        SetConsoleTextAttribute(h,15);
+    cout<<"\t\t\t\t       (\\_/)\n\t\t\t\t       (";
+    SetConsoleTextAttribute(h,13);
+    cout <<"o";
+    SetConsoleTextAttribute(h,8);
+    cout << ".";
+    SetConsoleTextAttribute(h,13);
+    cout << "o";
+    SetConsoleTextAttribute(h,15);
+    cout <<")\n\t\t\t\t       />\"<\\\n\t\t\t\t       \\___/\n\n";
+        SetConsoleTextAttribute(h,14);
         cout<<"\t*************************** Search Menu *******************************\n";
+        SetConsoleTextAttribute(h,9);
         cout << "\n\t\t1.Search from Books ID. \n\n\t\t2.Search from BookName.\n\n\t\t3.All book in library.\n\n\t\t4.Back to Menu\n";
+        SetConsoleTextAttribute(h,14);
         cout<<"\n\t***********************************************************************\n";
         cout << "\t\tEnter choice : ";
         cin >> choice;
@@ -427,15 +543,28 @@ void ReturnBook(){
     string key, name, con;
     int choice,t;
     system("cls");
-    cout<<"\t\t\t\t       (\\_/)\n\t\t\t\t       (o.o)\n\t\t\t\t       />\"<\\\n\t\t\t\t       \\___/\n\n";
+    SetConsoleTextAttribute(h,15);
+    cout<<"\t\t\t\t       (\\_/)\n\t\t\t\t       (";
+    SetConsoleTextAttribute(h,13);
+    cout <<"o";
+    SetConsoleTextAttribute(h,8);
+    cout << ".";
+    SetConsoleTextAttribute(h,13);
+    cout << "o";
+    SetConsoleTextAttribute(h,15);
+    cout <<")\n\t\t\t\t       />\"<\\\n\t\t\t\t       \\___/\n\n";
+    SetConsoleTextAttribute(h,14);
     cout<<"\t*************************** Return Menu *******************************\n";
+    SetConsoleTextAttribute(h,9);
     cout << "\n\t\t1.Return From Id\n\n\t\t2.Return Form Name\n\n\t\t3.Back to menu\n";
+    SetConsoleTextAttribute(h,14);
     cout<<"\n\t***********************************************************************\n";
     cout<<"\t\tEnter your choice : ";
     cin >> choice;
     switch (choice) {
         case 1:
             system("cls");
+            SetConsoleTextAttribute(h,11);
             cout << "Please Enter the Id of record you want to return: ";  
             cin >> key;
             cout << "Please Enter your name : ";
@@ -445,6 +574,7 @@ void ReturnBook(){
             break;
         case 2:
             system("cls");
+            SetConsoleTextAttribute(h,11);
             cout << "Please Enter the name of record you want to return: ";
             cin.ignore();
             getline(cin,key);
@@ -460,6 +590,7 @@ void ReturnBook(){
                 MainMenu_Admin();
             }
         default:
+        SetConsoleTextAttribute(h,4);
             cout << "Invalid command";
             getch();
             system("CLS");
@@ -487,8 +618,10 @@ void ReturnBook(){
         remove("BookList.txt");
         rename("NewBookList.txt", "BookList.txt");
         system("cls");
+        SetConsoleTextAttribute(h,3);
         cout << "successfully return :D\n" << endl;
         do{
+            SetConsoleTextAttribute(h,6);
             cout << "Do you have another book to return?(Yes : y || No : n) : ";
             cin  >> con;
             if( con == "y"){
@@ -503,6 +636,7 @@ void ReturnBook(){
                 }
             }
             else{
+                SetConsoleTextAttribute(h,4);
                 cout << "Invalid command";
                 getch();
                 system("cls");
@@ -524,20 +658,25 @@ void DeleteBook(){
     vector<string> info;
     do{
     cout << "\t\t\t                                .-.\n\t\t\t   (___________________________()6 `-,\n\t\t\t   (   ______________________   /''\"`\n\t\t\t   //\\\\                      //\\\\\n\t\t\t   \"\" \"\"                     \"\" \"\"\n\n";
+    SetConsoleTextAttribute(h,14);
     cout<<"\t*************************** Delete Book *****************************\n";
+    SetConsoleTextAttribute(h,9);
     cout<<"\n\t\t1.Delete From Id\n\n\t\t2.Delete Form Name\n\n\t\t3.Back to menu\n";
+    SetConsoleTextAttribute(h,14);
     cout<<"\n\t********************************************************************\n";
     cout<<"\t\tEnter your choice : ";
     cin >> choice;
     switch(choice){
         case 1:
             system("cls");
+            SetConsoleTextAttribute(h,9);
             cout << "Please Enter the Id of record you want to delete: ";  
             cin >> key;
             check_state = false;
             break;
         case 2:
             system("cls");
+            SetConsoleTextAttribute(h,9);
             cout << "Please Enter the name of record you want to delete: ";
             getline(cin,key);
             check_state = false;
@@ -572,9 +711,13 @@ void DeleteBook(){
             remove("BookList.txt");
             rename("newBookList.txt", "BookList.txt");
             system("cls");
+            SetConsoleTextAttribute(h,14);
             cout<<"\t***************************** Status *******************************\n";
+            SetConsoleTextAttribute(h,9);
             cout << "\n\tThe record with the name " << key << " has been deleted if it exsisted" << endl;
+            SetConsoleTextAttribute(h,14);
             cout<<"\n\n\t*************************** Delete Menu ****************************\n\n";
+            SetConsoleTextAttribute(h,9);
             cout << "\t\t1.Delete more book \n\t\tPress any other key to back to menu.";
             cout << "\n\t\tEnter choice : ";
             cin >> choice;
@@ -586,9 +729,13 @@ void DeleteBook(){
             remove("BookList.txt");
             rename("newBookList.txt", "BookList.txt");
             system("cls");
+            SetConsoleTextAttribute(h,14);
             cout<<"\t***************************** Status *******************************\n\n";
+            SetConsoleTextAttribute(h,4);
             cout << "\t\tNo book match with  " << key << endl;
+            SetConsoleTextAttribute(h,14);
             cout<<"\n\t*************************** Delete Menu ****************************\n\n";
+            SetConsoleTextAttribute(h,9);
             cout << "\t\t1.Delete more book \n\t\tPress any other key to back to menu.";
             cout << "\n\t\tEnter choice : ";
             cin >> choice;
@@ -604,14 +751,27 @@ void IssueBook(){
     string key, name, con;
     int choice,t;
     system("cls");
-    cout<<"\t\t\t\t       (\\_/)\n\t\t\t\t       (o.o)\n\t\t\t\t       />\"<\\\n\t\t\t\t       \\___/\n\n";
+    SetConsoleTextAttribute(h,15);
+    cout<<"\t\t\t\t       (\\_/)\n\t\t\t\t       (";
+    SetConsoleTextAttribute(h,13);
+    cout <<"o";
+    SetConsoleTextAttribute(h,8);
+    cout << ".";
+    SetConsoleTextAttribute(h,13);
+    cout << "o";
+    SetConsoleTextAttribute(h,15);
+    cout <<")\n\t\t\t\t       />\"<\\\n\t\t\t\t       \\___/\n\n";
+    SetConsoleTextAttribute(h,14);
     cout<<"\t*************************** Issue Menu *******************************\n";
+    SetConsoleTextAttribute(h,9);
     cout << "\n\t\t1.Issue From Id\n\n\t\t2.Issue Form Name\n\n\t\t3.Back to menu\n";
+    SetConsoleTextAttribute(h,14);
     cout<<"\n\t***********************************************************************\n";
     cout<<"\t\tEnter your choice : ";
     cin >> choice;
     if(choice == 1){
         system("cls");
+        SetConsoleTextAttribute(h,9);
         cout << "Please Enter the Id of record you want to issue: ";  
         cin >> key;
         cout << "Please enter How many days will you borrow: ";
@@ -623,6 +783,7 @@ void IssueBook(){
     }
     else if (choice == 2) {
         system("cls");
+        SetConsoleTextAttribute(h,9);
         cout << "Please Enter the name of record you want to issue: ";
         cin.ignore();
         getline(cin,key);
@@ -644,6 +805,7 @@ void IssueBook(){
         myfile.close();
         newfile.close();
         issuefile.close();
+        SetConsoleTextAttribute(h,4);
         cout << "\t\tWrong answer...\n\t\tAuto back to menu Press Enter";
         getch();
         if(state == 1){
@@ -672,6 +834,7 @@ void IssueBook(){
                 issuefile.close();
                 remove("BookList.txt");
                 rename("NewBookList.txt", "BookList.txt");
+                SetConsoleTextAttribute(h,4);
                 cout << "This book is not enough for issue.\n";
                 cout << "Will you continue to issue?(Yes : y || No : n) : ";
                 cin  >> con;
@@ -686,7 +849,8 @@ void IssueBook(){
                                 MainMenu_Admin();
                             }
                     }
-                    else{
+                    else{   
+                        SetConsoleTextAttribute(h,4);
                             cout << "Invalid command";
                     }
                 } while(true);
@@ -699,9 +863,11 @@ void IssueBook(){
         remove("BookList.txt");
         rename("NewBookList.txt", "BookList.txt");
         system("cls");
+        SetConsoleTextAttribute(h,14);
         cout << "successfully issue... have fun :D\n" << endl;
         cout << "You must return the book after "<< day <<" days today.";
-        cout << "Will you continue to issue?(Yes : y || No : n) : ";
+        SetConsoleTextAttribute(h,12);
+        cout << "\nWill you continue to issue?(Yes : y || No : n) : ";
         cin  >> con;
         do{
             if( con == "y"){
@@ -711,6 +877,7 @@ void IssueBook(){
                 Select_role();
             }
             else{
+                SetConsoleTextAttribute(h,4);
                 cout << "Invalid command";
             }
         } while(true);
@@ -725,7 +892,9 @@ void ShowIssueList(){
     vector<string> IssueListInfo;
     while(getline(myfile,textline)){
         IssueListInfo = delcomma(textline);
+        SetConsoleTextAttribute(h,14);
         cout << "*******************************************************************************" << endl;
+        SetConsoleTextAttribute(h,9);
         cout << "\n";
         cout << "Borrower: " << IssueListInfo.at(0) << "\t";
         cout << "Book ID: " << IssueListInfo.at(1) << "\t";
@@ -733,10 +902,11 @@ void ShowIssueList(){
         cout << "Borrowed time : " << IssueListInfo.at(3) << "\t" <<"\n\n";
         cout << "Time to return : "<< IssueListInfo.at(4) <<" day After Borrowed time.\n";
         cout << "\n";
+        SetConsoleTextAttribute(h,14);
         cout << "*******************************************************************************" << endl;
     }
     myfile.close();
-    do{
+    do{     SetConsoleTextAttribute(h,14);
             cout << "\tBack to menu.";
             cout << "\n\tEnter your choice : ";
             cin >> choice;
@@ -753,7 +923,7 @@ void ShowIssueList(){
 }
 void PassWord(){
     int i=0;
-    char ch,st[21],ch1[21]={"KarnlnwZa007"};
+    char ch,st[21],ch1[21]={"1"};
     cout << "\n\t\tEnter Password : ";
     while(1)
     {
@@ -785,7 +955,7 @@ void PassWord(){
         MainMenu_Admin();
     }
     else
-    {
+    {   SetConsoleTextAttribute(h,4);
         cout<<"\n\n\t\tWrong Password.\n\n\t\ttry again.....\n";
         getch();
         system("cls");
